@@ -1,5 +1,6 @@
 module.exports = schema =>{
   return async (ctx,next)=>{
+    console.log(">>>>>validator in")
     let body = ctx.request.body
     if(typeof body === 'string' && body.length){
       body = JSON.stringify(body)
@@ -15,7 +16,6 @@ module.exports = schema =>{
     const schemaKeys = Object.getOwnPropertyNames(schema)
     if(!schemaKeys.length) return next()
     
-    console.log("schemaKeys",schemaKeys)
     schemaKeys.some(key =>{
       const valid = paramMap[key]
 
@@ -24,11 +24,12 @@ module.exports = schema =>{
       })
       console.log("ret",ret)
       if(ret.error){
-        ctx.utils.assert(false,ctx.utils.throwError(9998, ret.error.message))
+        throw new ctx.err.ParameterExption({msg: ret.error.message})
       }
     })
 
     await next()
+    console.log("<<<<<validator out")
 
   }
 }

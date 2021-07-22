@@ -24,6 +24,6 @@ module.exports = {
       jti: 1
     },
     secret: 'koa-secret',
-    expiresIn: 60
+    expiresIn: '1h'
   }
 }

@@ -24,6 +24,7 @@ class UserCtroller{
   // 登录
   async login(ctx){
     const { name, password } = ctx.request.body
+    console.log(name, password)
     const user = await User.findOne({ name, password })
     console.log("user",user)
     if(!user){
@@ -34,7 +35,13 @@ class UserCtroller{
     // jwt
     const { payload, secret, expiresIn } = ctx.config.jwt
     const token = jwt.sign({...payload, name, password }, secret, { expiresIn })
-    ctx.body = token
+    ctx.body = {
+      userData:{
+        name,
+        id: user._id
+      },
+      token
+    }
   }
   // 注册
   async regist(ctx){

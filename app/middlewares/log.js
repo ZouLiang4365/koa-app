@@ -11,9 +11,13 @@ logger.level = level
 
 module.exports = ()=>{
   return async (ctx,next)=>{
+    
+    console.log(">>>>>logger in")
     const { method, path, origin, query, body, headers, ip } = ctx.request
+    console.log("recieve........", body)
     const data = { method, path, origin, query, body, headers, ip }
     await next()
+    console.log("<<<<<logger out")
     if(flag){
       const { status, params } = ctx;
       data.status = status;

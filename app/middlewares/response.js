@@ -1,5 +1,6 @@
 const response = () => {
   return async (ctx, next) => {
+    console.log(">>>>>response in")
     ctx.res.fail = ({ code, data, msg }) => {
       ctx.body = {
         code,
@@ -17,6 +18,7 @@ const response = () => {
     }
 
     await next()
+    console.log("<<<<<response out")
   } 
 }
 
