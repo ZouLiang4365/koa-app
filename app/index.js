@@ -7,16 +7,16 @@ const middlewares = require("./middlewares")
 const config = require("./config")
 // 工具函数
 const utils = require("./common/utils")
-
+// 错误处理
 const exception = require("./common/exception")
 
 const app = new koa()
 
-const { HOST,PORT } = config
+const context = app.context
 // 绑定到上下文，方便调用
-app.context.config = config
-app.context.utils = utils
-app.context.err = exception
+context.config = config
+context.utils = utils
+context.err = exception
 //注册中间件
 const composeMiddlewares = compose(middlewares)
 app.use(composeMiddlewares)
@@ -31,6 +31,7 @@ app.on("error",(error, ctx)=>{
   }
 })
 
+const { HOST,PORT } = config
 // app.listen 是一个语法糖，实际上调用的是node的http模块
 app.listen(PORT,HOST,()=>{
   console.log(`koa server listening on ${HOST}:${PORT}`)

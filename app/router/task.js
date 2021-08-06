@@ -1,6 +1,6 @@
 const { task } = require("../controller")
 
-const { getTaskByUser, createTask } = task
+const { getTaskByUser, createTask, starTask, deleteTask } = task
 
 module.exports = [{
   method: 'get',
@@ -10,4 +10,12 @@ module.exports = [{
   method: 'post',
   path: '/tasks',
   controller: createTask
+},{
+  method: 'put',
+  path: '/tasks/star',
+  controller: starTask
+},{
+  method:'delete',
+  path: '/tasks/:id',
+  controller: deleteTask
 }]

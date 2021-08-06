@@ -16,4 +16,6 @@ mongoose.connection.on('disconnnected',(error) =>{
   console.log("mongoDB disconnnected!")
 }) 
 
+mongoose.set('useFindAndModify', false)
+
 module.exports = mongoose

@@ -12,6 +12,7 @@ const taskSchema = new Schema({
   content: { type: String, required: true},
   endTime: { type: Date, required:true},
   status: { type: Boolean , default: false},
+  star: { type:Boolean, default: false }
 }, {timestamps: true})
 
 module.exports = model('Task', taskSchema,'Tasks')

@@ -5,7 +5,7 @@ const { Schema, model } = mongoose
 const userSchema = new Schema({
   _v:{ select:false },
   name: { type: String, required: true },
-  password: { type: String, required: true, select: false },
+  password: { type: String, required: true },
   meta:{
     createAt:{
       type:Date,

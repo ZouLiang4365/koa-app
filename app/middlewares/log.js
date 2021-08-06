@@ -14,7 +14,7 @@ module.exports = ()=>{
     
     console.log(">>>>>logger in")
     const { method, path, origin, query, body, headers, ip } = ctx.request
-    console.log("recieve........", body)
+    console.log("recieve........", query)
     const data = { method, path, origin, query, body, headers, ip }
     await next()
     console.log("<<<<<logger out")
